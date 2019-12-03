@@ -14,7 +14,7 @@ The solution comprises of:
 2. Logstash
 3. Kibana
 
-![basicflow] (https://oldhamuk.github.io/loghive.github.io/images/basicflow.png)
+! [basicflow] (https://oldhamuk.github.io/loghive.github.io/images/basicflow.png)
 
 
 
