@@ -1,4 +1,4 @@
-## Loghive
+# Loghive
 Syslog Server Solution using ELK
 
 After years of using commercial products for syslog solutions I decided I wanted to build something simple and free.
@@ -18,16 +18,16 @@ The solution comprises of:
 
 
 
-# Install Guide
+## Install Guide
 
-# Elasticsearch
-
-
-
-
-# Logstash
+### Elasticsearch
 
 
 
 
-# Kibana
+### Logstash
+
+
+
+
+### Kibana
