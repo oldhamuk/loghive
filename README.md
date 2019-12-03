@@ -1,4 +1,4 @@
-# loghive
+## loghive
 Syslog Server Solution using ELK
 
 After years of using commercial products for syslog solutions I decided I wanted to build something simple and free.
@@ -14,8 +14,20 @@ The solution comprises of:
 2. Logstash
 3. Kibana
 
-----------   syslog    - - - - - -         - - - - - - - - -         - - - - - -
-- Router -  - - - - - - Logstash - - - - - - Elasticsearch - - - - - -  Kibana -
-----------             - - - - - -         - - - - - - - - -         - - - - - -
+![basicflow] (https://oldhamuk.github.io/loghive.github.io/images/basicflow.png)
 
 
+
+# Install Guide
+
+# Elasticsearch
+
+
+
+
+# Logstash
+
+
+
+
+# Kibana
