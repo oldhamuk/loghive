@@ -109,7 +109,6 @@ EOF'
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch  
 sudo yum update -y  
 sudo yum install logstash -y  
-sudo cp -r logstash.service.d /etc/systemd/system/logstash.service.d/  
 sudo firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=10.0.0.0/8 port port=514 protocol=tcp  accept'  
 sudo firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=172.16.0.0/12 port port=514 protocol=tcp  accept'  
 sudo firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=192.168.0.0/16 port port=514 protocol=tcp  accept'  
@@ -143,6 +142,14 @@ EOF'
 sudo /sbin/ldconfig  
 sudo systemctl enable logstash  
 sudo systemctl start logstash  
+
+*** EDIT: /etc/logstash/logstash.yml and uncomment out the following: ***
+
+xpack.monitoring.enabled: true  
+xpack.monitoring.elasticasearch.hosts: ["http://ELASTICSEARCH-IP:9200"]  
+xpack.monitoring.elasticsearch.sniffinf: true  
+xpack.monitoring.collection.interval: 10s  
+xpack.monitoring.collection.pipeline.details.enabled: true  
 
 *********************************
 ******  Install Completed  ******
