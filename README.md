@@ -24,12 +24,17 @@ The following is a guide to installing everything required to setup Loghive. Ple
 
 This guide is for installing each component on separate servers, If you plan to running everything on a single server then you can exclude the 'sudo firewall-cmd' commands list in each section below with the exception of Kibana as those rules will be required to access the Kibana site.
 
+
 ### Elasticsearch
 
 sudo mkdir -p /ouk/install/loghive/
+
 sudo yum update -y
+
 sudo yum install wget net-tools java-1.8.0-openjdk -y
+
 sudo bash -c 'cat > /etc/yum.repos.d/elasticsearch.repo << EOF
+
 [elasticsearch-7.x]
 name=Elasticsearch repository for 7.x packages
 baseurl=https://artifacts.elastic.co/packages/7.x/yum
@@ -39,37 +44,63 @@ enabled=1
 autorefresh=1
 type=rpm-md
 EOF'
+
 sudo yum update -y
+
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
+
 sudo yum install elasticsearch -y
+
 sudo systemctl start elasticsearch
+
 sudo systemctl enable elasticsearch
+
 sudo curl -X GET "localhost:9200"
+
 sudo firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=LOGSTASH-IP/32 port port=9200 protocol=tcp  accept'
+
 sudo firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=LOGSTASH-IP/32 port port=9300 protocol=tcp  accept'
+
 sudo firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=KIBANA-IP/32 port port=9200 protocol=tcp  accept'
+
 sudo firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=KIBANA-IP/32 port port=9300 protocol=tcp  accept'
+
 sudo firewall-cmd --reload
 
 *** EDIT: /etc/elasticsearch/elasticsearch.yml with the following: ***
+
 ---- Cluster ----
+
 cluster.name: loghive
+
 ---- Node ----
+
 node.name: ${HOSTNAME}
+
 node.master: true
+
 node.data: true
+
 ---- Network ----
+
 network.host: 0.0.0.0
+
 ---- Discovery ----
+
 discovery.zen.ping.unicast.host: ["ELASTICSEARCH-IP"]
+
 cluster.initial_master_nodes: ELASTICSEARCH-IP
+
 ---- Various ----
+
 indices.query.bool.max_clause_count: 8192
+
 search.max_buckets: 100000
 
 *** SAVE THE FILE ***
 
 sudo systemctl restart elasticsearch
+
 
 
 *********************************
