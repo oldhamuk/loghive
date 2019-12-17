@@ -212,7 +212,7 @@ sudo setsebool httpd_can_network_connect 1 -P
 
 "Setting password for the user 'admin' to gain access to the Kibana portal. Repeat this set chaging the username from admin to your desired name to create extra logins."
 
-admin:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users  
+echo admin:`openssl passwd -apr1`" | sudo tee -a /etc/nginx/htpasswd.users  
 sudo systemctl restart nginx  
 
 
