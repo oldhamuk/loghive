@@ -1,0 +1,1 @@
+elasticsearch.hosts: ["http://ELASTICSEARCH-IP:9200"]
