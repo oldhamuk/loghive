@@ -134,7 +134,7 @@ syslog_pri { }
 }  
 output {  
 elasticsearch { hosts => ["ELASTICSEARCH-IP:9200"]  
-index => "elastilog-hdc-%{+YYYY.MM.dd}" }  
+index => "loghive-%{+YYYY.MM.dd}" }  
 }  
 EOF'  
 sudo bash -c 'cat > /etc/ld.so.conf.d/java.conf << EOF  
